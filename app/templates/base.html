@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Is it up?</title>
+    {% endif %}
+  </head>
+  <body>
+    <nav>
+      <a href="{{ url_for('things') }}">Things</a>
+      <a href="{{ url_for('new_thing') }}">New thing</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </nav>
+    {% block content %}{% endblock %}
+  </body>
+</html>

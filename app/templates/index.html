@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Is it up?</title>
+    {% endif %}
+  </head>
+  <body>
+
+    <h1>Is it up?</h1>
+    <p>Check if your server's up.</p>
+
+    {% if error %}
+    <p><strong>ERROR:</strong> {{ error }}</p>
+    {% endif %}
+
+    <a href="{{ url_for('login') }}">Log in with Google</a>
+
+  </body>
+</html>

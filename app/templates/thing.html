@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form action="" method="POST" name="edit_thing_form">
+  {{ form.hidden_tag() }}
+  <label for="inputName">Name</label>
+  {{ form.name(id="inputName", maxlength="100") }}
+
+  <label for="inputDelta">Time to consider dead (mins)</label>
+  {{ form.delta(id="inputDelta", type="number") }}
+
+  <label>Delete?</label>
+  {{ form.delete() }}
+
+  <button type="submit">Submit</button>
+</form>
+
+<a href="{{ url_for('things') }}">Go back</a>
+{% endblock %}
+

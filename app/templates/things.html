@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.down {
+  background-color: red;
+  color: white;
+}
+
+.no-call {
+  background-color: yellow;
+}
+</style>
+
+<table cellspacing="0" cellpadding="5">
+  <tr>
+    <th>Name</th>
+    <th>UUID</th>
+    <th>Last call home (UTC)</th>
+    <th>Down?</th>
+  </tr>
+  {% for thing in things %}
+  {% set down = isitdown(thing.timestamp, thing.delta) %}
+
+  {% if down == None %}
+  <tr class="no-call">
+  {% elif down == True %}
+  <tr class="down">
+  {% else %}
+  <tr>
+  {% endif %}
+    <td>{{ thing.name }}</td>
+    <td><a href="{{ url_for('thing', uuid=thing.uuid) }}">{{ thing.uuid }}</a></td>
+    <td>{{ thing.timestamp }}</td>
+    <td>{{ isitdown(thing.timestamp, thing.delta) }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
