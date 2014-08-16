@@ -27,9 +27,9 @@ p#callhome {
   {% for thing in things %}
   {% set down = isitdown(thing.timestamp, thing.delta) %}
 
-  {% if down == None %}
+  {% if down == "N/A" %}
   <tr class="no-call">
-  {% elif down == True %}
+  {% elif down == "Yes" %}
   <tr class="down">
   {% else %}
   <tr>

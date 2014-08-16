@@ -49,11 +49,11 @@ def things():
         now = datetime.datetime.utcnow()
 
         if timestamp is None:
-            return None
+            return "N/A"
         elif now - timestamp < dt_delta:
-            return False
+            return "No"
         else:
-            return True
+            return "Yes"
 
     return render_template('things.html',
             title = 'your things',
