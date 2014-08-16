@@ -26,8 +26,13 @@ def index():
     if g.user.is_authenticated():
         return redirect(url_for('things'))
 
+    stats = {}
+    stats['users'] = User.query.count()
+    stats['things'] = Thing.query.count()
+
     return render_template('index.html',
-            title='Isitup?')
+            title='Isitup?',
+            stats = stats)
 
 @app.route('/logout')
 def logout():

@@ -11,12 +11,16 @@
       body {
         text-align: center;
       }
+      p#stats {
+        font-size: smaller;
+      }
     </style>
   </head>
   <body>
 
     <h1>Is it up?</h1>
     <p>Check if your server's up.</p>
+    <p id="stats">Currently keeping track of <strong>{{ stats.things }}</strong> servers from <strong>{{ stats.users }}</strong> users</p>
 
     {% if error %}
     <p><strong>ERROR:</strong> {{ error }}</p>
