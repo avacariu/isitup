@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>The help page</h1>
+<p>Hopefully this will clear up some things.</p>
+
+<h2>What is this?</h2>
+<p><strong>isitup</strong> is a way to see which servers you've got are still running. It allows servers to call in to say that they're still running.</p>
+
+<h2>How do I use it?</h2>
+<ol>
+  <li>Click <strong>New thing</strong> in the menu.</li>
+  <li>Give your new thing a name</li>
+  <li>The <em>Time to consider dead</em> is the timedelta from the last call to determine if the server is dead.</li>
+  <li>Hit <strong>Create</strong></li>
+  <li>Find your machine in the list and click the UUID</li>
+  <li>Copy the <strong>Call home URL</strong> from the bottom of the page</li>
+  <li>Add a cronjob that opens that URL</li>
+</ol>
+
+<h2>Tips</h2>
+<p>Use something like this as a cron job:<p>
+<code>*/5 * * * * root curl --silent http://do.avacariu.me/isitup/api/callhome/<em>&lt;UUID&gt;</em> &gt; /dev/null</code>
+
+{% endblock %}

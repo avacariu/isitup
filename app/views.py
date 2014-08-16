@@ -108,6 +108,12 @@ def new_thing():
             title = 'Register a new thing',
             form = form)
 
+@app.route('/help')
+@login_required
+def help_page():
+    return render_template('help.html',
+            title = 'Help')
+
 
 @app.route('/api/callhome/<uuid>')
 def api_callhome(uuid):
