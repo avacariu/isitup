@@ -10,6 +10,11 @@
 .no-call {
   background-color: yellow;
 }
+
+p#callhome {
+  font-size: smaller;
+  text-align: center;
+}
 </style>
 
 <table cellspacing="0" cellpadding="5">
@@ -36,5 +41,7 @@
   </tr>
   {% endfor %}
 </table>
+
+<p id="callhome"><strong>Call home URL:</strong> http://do.avacariu.me/isitup/api/callhome/<em>&lt;UUID&gt;</em></p>
 
 {% endblock %}

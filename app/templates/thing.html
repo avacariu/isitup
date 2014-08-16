@@ -13,7 +13,10 @@ form label#delete,
 form #inputDelete {
   display: inline;
 }
-
+p#callhome {
+  font-size: smaller;
+  text-align: center;
+}
 </style>
 
 <h1>Edit the thing</h1>
@@ -34,6 +37,9 @@ form #inputDelete {
   <button type="submit">Submit</button>
   <a href="{{ url_for('things') }}">Go back</a>
 </form>
+
+<p id="callhome"><strong>Call home URL:</strong><br>
+http://do.avacariu.me/isitup{{ url_for('api_callhome', uuid=thing.uuid) }}</em></p>
 
 {% endblock %}
 
