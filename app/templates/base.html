@@ -6,13 +6,43 @@
     {% else %}
     <title>Is it up?</title>
     {% endif %}
+
+    <style>
+      body {
+        width: 1000px;
+        margin: 0 auto;
+      }
+      nav {
+        background: rgb(200, 200, 200);
+        padding: 5px;
+      }
+      nav ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+      nav ul li {
+        display: block;
+        float: right;
+        line-height: 30px;
+        margin: 0 10px;
+        padding: 0;
+        position: relative;
+
+      }
+      table {
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-    <nav>
-      <a href="{{ url_for('things') }}">Things</a>
-      <a href="{{ url_for('new_thing') }}">New thing</a>
-      <a href="{{ url_for('logout') }}">Logout</a>
-    </nav>
-    {% block content %}{% endblock %}
+  <nav>
+    <ul>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      <li><a href="{{ url_for('new_thing') }}">New thing</a></li>
+      <li><a href="{{ url_for('things') }}">Things</a></li>
+    </ul>
+  </nav>
+  {% block content %}{% endblock %}
   </body>
 </html>

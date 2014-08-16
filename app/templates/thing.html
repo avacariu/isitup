@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+form label,
+form input {
+  display: block;
+}
+form input {
+  margin-bottom: 10px;
+}
+</style>
+
+<h1>Edit the thing</h1>
+<p><strong>{{ thing.uuid }}</strong></p>
+
 <form action="" method="POST" name="edit_thing_form">
   {{ form.hidden_tag() }}
   <label for="inputName">Name</label>
@@ -9,12 +22,12 @@
   <label for="inputDelta">Time to consider dead (mins)</label>
   {{ form.delta(id="inputDelta", type="number") }}
 
-  <label>Delete?</label>
-  {{ form.delete() }}
+  <label for="inputDelete">Delete?</label>
+  {{ form.delete(id="inputDelete") }}
 
   <button type="submit">Submit</button>
+  <a href="{{ url_for('things') }}">Go back</a>
 </form>
 
-<a href="{{ url_for('things') }}">Go back</a>
 {% endblock %}
 

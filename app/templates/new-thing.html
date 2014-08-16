@@ -1,16 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 
+<style>
+form label,
+form input {
+  display: block;
+}
+form input {
+  margin-bottom: 10px;
+}
+</style>
+
+<h1>Create a new thing</h1>
+<p>It's a good idea to have the dead time twice your cron job frequency</p>
+
 <form action="" method="POST" name="new_thing_form">
   {{ form.hidden_tag() }}
   <label for="inputName">Name</label>
   {{ form.name(id="inputName", maxlength="100") }}
 
   <label for="inputDelta">Time to consider dead (mins)</label>
-  {{ form.delta(id="inputDelta", type="number") }}
+  {{ form.delta(id="inputDelta", type="number", value="10") }}
 
-  <button type="submit">Submit</button>
+  <button type="submit">Create</button>
+  <a href="{{ url_for('things') }}">Go back</a>
 </form>
 
-<a href="{{ url_for('things') }}">Go back</a>
 {% endblock %}
