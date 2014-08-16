@@ -39,7 +39,7 @@ p#callhome {
 </form>
 
 <p id="callhome"><strong>Call home URL:</strong><br>
-http://do.avacariu.me/{{ url_for('api_callhome', uuid=thing.uuid) }}</em></p>
+http://do.avacariu.me{{ url_for('api_callhome', uuid=thing.uuid) }}</em></p>
 
 {% endblock %}
 
