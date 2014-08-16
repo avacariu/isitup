@@ -1,5 +1,5 @@
 flask
 flask-login
--e git://github.com/mitsuhiko/flask-openid.git#egg=flask-openid
 flask-sqlalchemy
 flask-wtf
+python-social-auth

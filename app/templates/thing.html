@@ -9,6 +9,11 @@ form input {
 form input {
   margin-bottom: 10px;
 }
+form label#delete,
+form #inputDelete {
+  display: inline;
+}
+
 </style>
 
 <h1>Edit the thing</h1>
@@ -22,8 +27,9 @@ form input {
   <label for="inputDelta">Time to consider dead (mins)</label>
   {{ form.delta(id="inputDelta", type="number") }}
 
-  <label for="inputDelete">Delete?</label>
+  <label id="delete" for="inputDelete">Delete?</label>
   {{ form.delete(id="inputDelete") }}
+  <br>
 
   <button type="submit">Submit</button>
   <a href="{{ url_for('things') }}">Go back</a>

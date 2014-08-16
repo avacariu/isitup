@@ -5,3 +5,4 @@
 
 venv/
 app.db
+local_config.py

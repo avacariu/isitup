@@ -22,7 +22,7 @@
     <p><strong>ERROR:</strong> {{ error }}</p>
     {% endif %}
 
-    <a href="{{ url_for('login') }}">Log in with Google</a>
+    <a href="{{ url_for('social.auth', backend='google-oauth2') }}">Log in with Google</a>
 
   </body>
 </html>

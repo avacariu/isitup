@@ -1,66 +1,37 @@
-from . import app, oid, db
-from flask import request, url_for, render_template, g, session, redirect, flash
-
-from functools import wraps
 import datetime
 import uuid
 
+from flask import request, url_for, render_template, g, session, redirect, flash
+
+from flask.ext.login import login_required, logout_user, current_user
+from social.apps.flask_app import routes
+
+from . import app, db, lm
 from .models import User, Thing
 from .forms import NewThingForm, EditThingForm
 
-def login_required(func):
-    @wraps(func)
-    def decorated(*args, **kwargs):
-        if g.user is None:
-            flash("Need to be logged in!")
-            return redirect(url_for('index'))
-        return func(*args, **kwargs)
-
-    return decorated
+@lm.user_loader
+def load_user(userid):
+    try:
+        return User.query.get(int(userid))
+    except (TypeError, ValueError):
+        pass
 
 @app.before_request
 def before_request():
-    g.user = None
-    if 'openid' in session:
-        g.user = User.query.filter_by(openid=session['openid']).first()
+    g.user = current_user
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
-    if g.user is not None:
+    if g.user.is_authenticated():
         return redirect(url_for('things'))
 
     return render_template('index.html',
-            title='Isitup?',
-            error=oid.fetch_error())
-
-@app.route('/login')
-@oid.loginhandler
-def login():
-    if g.user is not None:
-        return redirect(url_for('things'))
-
-    provider = 'https://www.google.com/accounts/o8/id'
-    return oid.try_login(provider, ask_for=['email'])
-
-@oid.after_login
-def create_or_login(resp):
-    session['openid'] = resp.identity_url
-    user = User.query.filter_by(openid=resp.identity_url).first()
-
-    if user is not None:
-        flash("Successfully signed in!")
-        g.user = user
-    else:
-        user = User(resp.email, resp.identity_url)
-        db.session.add(user)
-        db.session.commit()
-
-    return redirect(url_for('things'))
+            title='Isitup?')
 
 @app.route('/logout')
-@login_required
 def logout():
-    session.pop('openid', None)
+    logout_user()
     flash("Bye!")
     return redirect(url_for('index'))
 

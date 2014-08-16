@@ -14,21 +14,28 @@
       }
       nav {
         background: rgb(200, 200, 200);
-        padding: 5px;
+        padding: 15px;
       }
       nav ul {
         margin: 0;
         padding: 0;
         list-style-type: none;
       }
+      nav a#home-link,
       nav ul li {
         display: block;
-        float: right;
         line-height: 30px;
-        margin: 0 10px;
         padding: 0;
         position: relative;
-
+        top: -16px;
+      }
+      nav a#home-link {
+        float: left;
+        font-weight: bold;
+      }
+      nav ul li {
+        float: right;
+        margin-left: 10px;
       }
       table {
         width: 100%;
@@ -37,10 +44,10 @@
   </head>
   <body>
   <nav>
-    <ul>
+    <a id="home-link" href="{{ url_for('index') }}">isitup?</a>
+    <ul id="menu">
       <li><a href="{{ url_for('logout') }}">Logout</a></li>
       <li><a href="{{ url_for('new_thing') }}">New thing</a></li>
-      <li><a href="{{ url_for('things') }}">Things</a></li>
     </ul>
   </nav>
   {% block content %}{% endblock %}
