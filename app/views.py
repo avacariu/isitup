@@ -55,10 +55,17 @@ def things():
         else:
             return "Yes"
 
+    def minutes_ago(timestamp):
+        if timestamp is None:
+            return "N/A"
+
+        return (datetime.datetime.utcnow() - timestamp).seconds // 60
+
     return render_template('things.html',
             title = 'your things',
             things = g.user.things,
-            isitdown = isitdown)
+            isitdown = isitdown,
+            minutes_ago = minutes_ago)
 
 @app.route('/thing/<uuid>', methods=['GET', 'POST'])
 @login_required

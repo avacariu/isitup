@@ -21,7 +21,7 @@ p#callhome {
   <tr>
     <th>Name</th>
     <th>UUID</th>
-    <th>Last call home (UTC)</th>
+    <th>Last call (min ago)</th>
     <th>Down?</th>
   </tr>
   {% for thing in things %}
@@ -36,7 +36,9 @@ p#callhome {
   {% endif %}
     <td>{{ thing.name }}</td>
     <td><a href="{{ url_for('thing', uuid=thing.uuid) }}">{{ thing.uuid }}</a></td>
-    <td>{{ thing.timestamp }}</td>
+    <td title="{{ thing.timestamp }} UTC">
+      {{ minutes_ago(thing.timestamp) }}
+    </td>
     <td>{{ isitdown(thing.timestamp, thing.delta) }}</td>
   </tr>
   {% endfor %}
