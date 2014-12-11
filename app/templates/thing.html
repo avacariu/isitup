@@ -13,14 +13,23 @@ form label#delete,
 form #inputDelete {
   display: inline;
 }
+p#uuid {
+  font-weight: bold;
+  font-family: monospace;
+  font-size: larger;
+}
 p#callhome {
-  font-size: smaller;
   text-align: center;
+  font-family: monospace;
+}
+p#callhome::first-line {
+  font-family: sans-serif;
+  font-weight: bold;
 }
 </style>
 
 <h1>Edit the thing</h1>
-<p><strong>{{ thing.uuid }}</strong></p>
+<p id="uuid">{{ thing.uuid }}</p>
 
 <form action="" method="POST" name="edit_thing_form">
   {{ form.hidden_tag() }}
@@ -38,8 +47,8 @@ p#callhome {
   <a href="{{ url_for('things') }}">Go back</a>
 </form>
 
-<p id="callhome"><strong>Call home URL:</strong><br>
-http://isitup.80x24.ca{{ url_for('api_callhome', uuid=thing.uuid) }}</em></p>
+<p id="callhome">Call home URL:<br>
+http://isitup.80x24.ca{{ url_for('api_callhome', uuid=thing.uuid) }}</p>
 
 {% endblock %}
 

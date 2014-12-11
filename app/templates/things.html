@@ -12,8 +12,18 @@
 }
 
 p#callhome {
-  font-size: smaller;
   text-align: center;
+  font-family: monospace;
+}
+
+p#callhome::first-line {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+td.uuid {
+  font-family: monospace;
+  font-size: larger;
 }
 </style>
 
@@ -35,7 +45,7 @@ p#callhome {
   <tr>
   {% endif %}
     <td>{{ thing.name }}</td>
-    <td><a href="{{ url_for('thing', uuid=thing.uuid) }}">{{ thing.uuid }}</a></td>
+    <td class="uuid"><a href="{{ url_for('thing', uuid=thing.uuid) }}">{{ thing.uuid }}</a></td>
     <td title="{{ thing.timestamp }} UTC">
       {{ minutes_ago(thing.timestamp) }}
     </td>
@@ -44,6 +54,7 @@ p#callhome {
   {% endfor %}
 </table>
 
-<p id="callhome"><strong>Call home URL:</strong> http://isitup.80x24.ca/api/callhome/<em>&lt;UUID&gt;</em></p>
+<p id="callhome">Call home URL:<br>
+http://isitup.80x24.ca/api/callhome/<em>&lt;UUID&gt;</em></p>
 
 {% endblock %}
