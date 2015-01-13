@@ -48,7 +48,6 @@ p#callhome::first-line {
 </form>
 
 <p id="callhome">Call home URL:<br>
-http://isitup.80x24.ca{{ url_for('api_callhome', uuid=thing.uuid) }}</p>
+{{ config.SITE_URL }}/{{ url_for('api_callhome', uuid=thing.uuid) }}</p>
 
 {% endblock %}
-

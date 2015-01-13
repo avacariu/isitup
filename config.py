@@ -14,6 +14,8 @@ SOCIAL_AUTH_AUTHENTICATION_BACKENDS = ('social.backends.google.GoogleOAuth2',)
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '***'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '***'
 
+SITE_URL = "https://isitup.80x24.ca"
+
 try:
     from local_config import *
 except ImportError:
