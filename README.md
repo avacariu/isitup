@@ -2,15 +2,17 @@ Isitup
 ======
 
 Isitup is a hosted service for checking if some server is still up or not. It
-requires that servers send an HTTP GET request to a specific IP address to
-specify that they're still up. The easiest way to set this up is as a cron job.
+requires that servers send an HTTP GET request to a specific URL to say that
+they're still up. The easiest way to set this up is as a cron job.
 
-The only method of authentication accepted is Google OAuth2. Since service is
-just something I've written for my own personal use, I'm not too interested in
-extending the user management features.
+The only method of authentication accepted is Google OAuth2 (OpenID Connect).
+Since this service is just something I've written for my own personal use, I'm
+not too interested in extending the user management features.
 
 It isn't pretty, there are no error messages, there are no success messages,
 but it works.
+
+MIT Licensed.
 
 
 Google OAuth2 setup
