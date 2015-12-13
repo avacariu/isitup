@@ -10,6 +10,9 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,400italic,500|Ubuntu+Mono' rel='stylesheet' type='text/css'>
 
     <style>
+      * {
+        box-sizing: border-box;
+      }
       body {
         max-width: 1000px;
         margin: 0 auto;
@@ -21,6 +24,7 @@
         padding: 10px;
         display: table;
         width: 100%;
+        margin-left: -10px;
       }
       nav ul {
         margin: 0;
@@ -34,6 +38,12 @@
       nav ul li {
         float: right;
         margin-left: 10px;
+      }
+      nav a {
+        text-decoration: none;
+      }
+      #menu a:hover {
+        color: black;
       }
       table {
         width: 100%;
