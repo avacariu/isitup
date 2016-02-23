@@ -46,7 +46,7 @@ def things():
     """Show a list of all things registered for this account."""
     def isitdown(timestamp, delta):
         dt_delta = datetime.timedelta(0, delta * 60)
-        now = datetime.datetime.utcnow()
+        now = datetime.datetime.now(datetime.timezone.utc)
 
         if timestamp is None:
             return "N/A"
@@ -59,7 +59,9 @@ def things():
         if timestamp is None:
             return "N/A"
 
-        return (datetime.datetime.utcnow() - timestamp).seconds // 60
+        now = datetime.datetime.now(datetime.timezone.utc)
+
+        return (now - timestamp).seconds // 60
 
     return render_template('things.html',
             title = 'your things',
@@ -132,7 +134,7 @@ def api_callhome(uuid):
     """A thing is calling home."""
     thing = Thing.query.filter_by(uuid=uuid).first()
     if thing:
-        thing.timestamp = datetime.datetime.utcnow()
+        thing.timestamp = datetime.datetime.now(datetime.timezone.utc)
 
         db.session.add(thing)
         db.session.commit()
