@@ -1,5 +1,5 @@
 from app import db
-from social.apps.flask_app import models
+from social.apps.flask_app.default import models
 from flask.ext.login import UserMixin
 
 class User(db.Model, UserMixin):

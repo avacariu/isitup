@@ -1,14 +1,15 @@
 import datetime
 import uuid
 
-from flask import request, url_for, render_template, g, session, redirect, flash
+from flask import url_for, render_template, g, redirect, flash
 
 from flask.ext.login import login_required, logout_user, current_user
-from social.apps.flask_app import routes
+from social.apps.flask_app import routes #noqa
 
 from . import app, db, lm
 from .models import User, Thing
 from .forms import NewThingForm, EditThingForm
+
 
 @lm.user_loader
 def load_user(userid):
@@ -17,13 +18,15 @@ def load_user(userid):
     except (TypeError, ValueError):
         pass
 
+
 @app.before_request
 def before_request():
     g.user = current_user
 
+
 @app.route('/')
 def index():
-    if g.user.is_authenticated():
+    if g.user.is_authenticated:
         return redirect(url_for('things'))
 
     stats = {}
@@ -31,8 +34,9 @@ def index():
     stats['things'] = Thing.query.count()
 
     return render_template('index.html',
-            title='Isitup?',
-            stats = stats)
+                           title='Isitup?',
+                           stats=stats)
+
 
 @app.route('/logout')
 def logout():
@@ -40,12 +44,14 @@ def logout():
     flash("Bye!")
     return redirect(url_for('index'))
 
+
 @app.route('/thing')
 @login_required
 def things():
     """Show a list of all things registered for this account."""
     def isitdown(timestamp, delta):
         dt_delta = datetime.timedelta(0, delta * 60)
+
         now = datetime.datetime.now(datetime.timezone.utc)
 
         if timestamp is None:
@@ -64,10 +70,11 @@ def things():
         return (now - timestamp).seconds // 60
 
     return render_template('things.html',
-            title = 'your things',
-            things = g.user.things,
-            isitdown = isitdown,
-            minutes_ago = minutes_ago)
+                           title='your things',
+                           things=g.user.things,
+                           isitdown=isitdown,
+                           minutes_ago=minutes_ago)
+
 
 @app.route('/thing/<uuid>', methods=['GET', 'POST'])
 @login_required
@@ -96,8 +103,9 @@ def thing(uuid):
         return redirect(url_for('things'))
 
     return render_template('thing.html',
-            thing=thing,
-            form=form)
+                           thing=thing,
+                           form=form)
+
 
 @app.route('/new-thing', methods=['GET', 'POST'])
 @login_required
@@ -119,14 +127,15 @@ def new_thing():
         return redirect(url_for('things'))
 
     return render_template('new-thing.html',
-            title = 'Register a new thing',
-            form = form)
+                           title='Register a new thing',
+                           form=form)
+
 
 @app.route('/help')
 @login_required
 def help_page():
     return render_template('help.html',
-            title = 'Help')
+                           title='Help')
 
 
 @app.route('/api/callhome/<uuid>')
