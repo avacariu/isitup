@@ -1,6 +1,7 @@
 from app import db
-from social.apps.flask_app.default import models
+from social.apps.flask_app.default import models    #noqa
 from flask.ext.login import UserMixin
+
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
