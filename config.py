@@ -16,7 +16,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_SEC
 
 SITE_URL = "https://isitup.80x24.ca"
 
-DEBUG = True
+DEBUG = bool(os.environ.get('DEBUG', False))
 
 try:
     from local_config import *
