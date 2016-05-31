@@ -1,6 +1,6 @@
 from app import db
 from social.apps.flask_app.default import models    #noqa
-from flask.ext.login import UserMixin
+from flask_login import UserMixin
 
 
 class User(db.Model, UserMixin):

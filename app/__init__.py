@@ -1,7 +1,7 @@
 from flask import Flask
 
-from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.login import LoginManager
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager
 
 from social.apps.flask_app.routes import social_auth
 from social.apps.flask_app.default.models import init_social

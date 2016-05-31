@@ -5,7 +5,7 @@ import pytz
 
 from flask import url_for, render_template, g, redirect, flash
 
-from flask.ext.login import login_required, logout_user, current_user
+from flask_login import login_required, logout_user, current_user
 from social.apps.flask_app import routes #noqa
 
 from . import app, db, lm
