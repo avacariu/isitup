@@ -17,3 +17,4 @@ requests-oauthlib
 six
 psycopg2
 gunicorn
+pytz

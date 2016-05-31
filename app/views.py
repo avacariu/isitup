@@ -1,6 +1,8 @@
 import datetime
 import uuid
 
+import pytz
+
 from flask import url_for, render_template, g, redirect, flash
 
 from flask.ext.login import login_required, logout_user, current_user
@@ -52,11 +54,12 @@ def things():
     def isitdown(timestamp, delta):
         dt_delta = datetime.timedelta(0, delta * 60)
 
-        now = datetime.datetime.now(datetime.timezone.utc)
+        now = datetime.datetime.now(pytz.utc)
 
         if timestamp is None:
             return "N/A"
-        elif now - timestamp < dt_delta:
+        # set tzinfo since SQLite loses this info
+        elif now - timestamp.replace(tzinfo=pytz.utc) < dt_delta:
             return "No"
         else:
             return "Yes"
@@ -65,9 +68,9 @@ def things():
         if timestamp is None:
             return "N/A"
 
-        now = datetime.datetime.now(datetime.timezone.utc)
+        now = datetime.datetime.now(pytz.utc)
 
-        return (now - timestamp).seconds // 60
+        return (now - timestamp.replace(tzinfo=pytz.utc)).seconds // 60
 
     return render_template('things.html',
                            title='your things',
@@ -143,7 +146,7 @@ def api_callhome(uuid):
     """A thing is calling home."""
     thing = Thing.query.filter_by(uuid=uuid).first()
     if thing:
-        thing.timestamp = datetime.datetime.now(datetime.timezone.utc)
+        thing.timestamp = datetime.datetime.now(pytz.utc)
 
         db.session.add(thing)
         db.session.commit()
