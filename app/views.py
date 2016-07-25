@@ -70,7 +70,7 @@ def things():
 
         now = datetime.datetime.now(pytz.utc)
 
-        return (now - timestamp.replace(tzinfo=pytz.utc)).seconds // 60
+        return (now - timestamp.replace(tzinfo=pytz.utc)).total_seconds() // 60
 
     return render_template('things.html',
                            title='your things',
